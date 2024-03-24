@@ -1,10 +1,10 @@
-package models.Pessoa;
+package models.People;
 
-public class Cliente extends Pessoa{
+public class Client extends People {
     private String CPF;
 
-    public Cliente(String CPF,String nomeCompleto, String telefone) {
-        super(nomeCompleto, telefone);
+    public Client(String CPF, String name, String phone) {
+        super(name, phone);
         this.CPF = CPF;
     }
 

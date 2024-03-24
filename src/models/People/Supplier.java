@@ -1,10 +1,10 @@
-package models.Pessoa;
+package models.People;
 
-public class Fornecedor extends Pessoa{
+public class Supplier extends People {
     private String email;
     private String CNPJ;
-    public Fornecedor(String nomeCompleto, String telefone, String email, String CNPJ){
-        super(nomeCompleto, telefone);
+    public Supplier(String name, String phone, String email, String CNPJ){
+        super(name, phone);
         this.email = email;
         this.CNPJ = CNPJ;
     }
