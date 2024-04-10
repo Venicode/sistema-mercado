@@ -46,11 +46,11 @@ public abstract class Product {
         this.sellingPrice = sellingPrice;
     }
 
-    public Supplier getSupplier() {
+    public models.People.Supplier getSupplier() {
         return supplier;
     }
 
-    public void setSupplier(Supplier supplier) {
+    public void setSupplier(models.People.Supplier supplier) {
         this.supplier = supplier;
     }
 

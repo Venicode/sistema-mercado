@@ -1,14 +1,12 @@
 package models.Product;
 
-import models.People.Supplier;
-
 public class Drinks extends Product {
     private double liters;
     private boolean alcoholic;
     private String expirationDate;
 
     public Drinks(String description, double costPrice,
-                  double sellingPrice, Supplier supplier,
+                  double sellingPrice, models.People.Supplier supplier,
                   int quantity, double liters, boolean alcoholic,
                   String expirationDate) {
         super(description, costPrice, sellingPrice, supplier, quantity);
