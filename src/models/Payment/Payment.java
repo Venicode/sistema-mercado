@@ -13,10 +13,6 @@ public abstract class Payment {
         return methodPayment;
     }
 
-    public void setMethodPayment(String methodPayment) {
-        this.methodPayment = methodPayment;
-    }
-
     public double getAmount() {
         return amount;
     }
