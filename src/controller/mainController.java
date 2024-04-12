@@ -11,12 +11,6 @@ public class mainController {
         newView.mainMenu();
         Scanner option = new Scanner(System.in);
         String resposta = option.nextLine();
-        while(true){
-            if(resposta.equals(1)){
-                System.out.println("Informe o cpf do cliente: ");
-                String nomeCliente = option.nextLine();
-
-            }
-        }
+        option.close();
     }
 }
