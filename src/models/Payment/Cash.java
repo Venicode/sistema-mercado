@@ -1,18 +1,38 @@
 package models.Payment;
 
 public class Cash extends Payment {
-    public Cash(String methodPayment, double amount) {
-        super(methodPayment, amount);
+    private double amount;
+    private double amountPaid;
+
+    public Cash(double amount, double amountPaid){
+        this.amount = amount;
+        this.amountPaid = amountPaid;
     }
-    public double calculateChange(double amountPaid){
-        double changeAmount = amountPaid - super.getAmount();
+    public void methodPayment(){
+        double changeAmount = amountPaid - amount;
         if(changeAmount<0){
             System.out.println("Dinheiro insuficiente para o pagamento.");
             System.out.println("Falta: "+changeAmount);
         }
         if(changeAmount ==0){
-            return changeAmount;
+           this.amount = amountPaid;
         } System.out.println("Valor para troco: "+changeAmount);
-        return changeAmount;
+        this.amount = changeAmount;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public double getAmountPaid() {
+        return amountPaid;
+    }
+
+    public void setAmountPaid(double amountPaid) {
+        this.amountPaid = amountPaid;
     }
 }

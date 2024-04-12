@@ -2,21 +2,19 @@ package models.Stock;
 
 import models.Product.Product;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Stock {
-    private final ArrayList<Product> list = new ArrayList<>();
-    private int amount;
+    private Map<Product, Integer> estoqueProdutos = new HashMap<>();
+    private int amountTotal;
 
-    public ArrayList<Product> getList() {
-        return list;
+    public Map<Product, Integer> getEstoqueProdutos() {
+        return estoqueProdutos;
     }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount += amount;
+    public int getAmountTotal() {
+        for (int amount: estoqueProdutos.values()) {
+            this.amountTotal += amount;
+        } return this.amountTotal;
     }
 }

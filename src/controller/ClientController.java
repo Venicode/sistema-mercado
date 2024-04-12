@@ -11,6 +11,15 @@ public class ClientController {
         list.add(newClient);
         System.out.println("Cliente cadastrado com sucesso!");
     }
+    public boolean verificarClienteCadastrado(String CPF){
+        boolean estaCadastrado = false;
+        for (Client client: list) {
+            if (client.getCPF().equals(CPF)) {
+                estaCadastrado = true;
+                break;
+            }
+        }return estaCadastrado;
+    }
     public void listarClientes(){
         System.out.println("Lista de clientes cadastrados:");
         for (Client i : list) {

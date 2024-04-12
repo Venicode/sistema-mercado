@@ -2,15 +2,11 @@ package models.Payment;
 
 public class CreditCard extends Payment {
     private int parcelCount;
-    CreditCard(int parcelCount, String methodPayment, double amount){
-        super(methodPayment, amount);
-        this.parcelCount = parcelCount;
-    }
-    public double calculateInterest(double amount){
+    private double amount;
+    public void methodPayment(){
         if (parcelCount > 6) {
             amount = amount + (amount * 0.05);
         }
-        return amount;
     }
     public int getParcelCount() {
         return parcelCount;
@@ -18,5 +14,13 @@ public class CreditCard extends Payment {
 
     public void setParcelCount(int parcelCount) {
         this.parcelCount = parcelCount;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }

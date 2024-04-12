@@ -1,8 +1,8 @@
 import controller.StockController;
 import controller.SupplierController;
 import controller.VendaController;
+import controller.mainController;
 import models.Payment.Cash;
-import models.Payment.Payment;
 import models.People.Client;
 import models.People.Supplier;
 import models.Product.Grocery;
@@ -11,7 +11,8 @@ import models.Venda.Venda;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Teste");
+        mainController newmainController = new mainController();
+        newmainController.mainController();
         Supplier newSupplier = new Supplier(
                 "Atacadao",
                 "(11)4151-2340",
@@ -39,10 +40,11 @@ public class Main {
                 "Vitoria",
                 "123123123");
         Cash newPaymentCash = new Cash(
-                "dinheiro",
-                10
+                newProduct.getSellingPrice(),
+                30
         );
-        StockController newStock = new StockController();
+        Stock newStockClass = new Stock();
+        StockController newStock = new StockController(newStockClass);
         newStock.cadastrarProdutoNoEstoque(newProduct);
         newStock.cadastrarProdutoNoEstoque(newProduct2);
         newStock.listarProdutosNoEstoque();
@@ -57,6 +59,20 @@ public class Main {
                 3
         );
         VendaController newVendaRealizada = new VendaController();
-        newVendaRealizada.realizarVenda(newVenda);
+        newPaymentCash.methodPayment();
+        newVendaRealizada.realizarVenda(newVenda, newStock);
+
+        Venda newVenda2 = new Venda(
+                newCliente,
+                newProduct,
+                newPaymentCash,
+                50,
+                3
+        );
+        VendaController newVendaRealizada2 = new VendaController();
+        newPaymentCash.methodPayment();
+        newVendaRealizada2.realizarVenda(newVenda2, newStock);
+        System.out.println("Estoque total: " + newStock.saldoAtualEstoque());
+
     }
 }
