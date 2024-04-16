@@ -8,8 +8,8 @@ public class Drinks extends Product {
     public Drinks(String description, double costPrice,
                   double sellingPrice, models.People.Supplier supplier,
                   int quantity, double liters, boolean alcoholic,
-                  String expirationDate) {
-        super(description, costPrice, sellingPrice, supplier, quantity);
+                  String expirationDate, long barcode) {
+        super(description, costPrice, sellingPrice, supplier, quantity, barcode);
         this.liters = liters;
         this.alcoholic = alcoholic;
         this.expirationDate = expirationDate;

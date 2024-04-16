@@ -4,9 +4,8 @@ public class Cash extends Payment {
     private double amount;
     private double amountPaid;
 
-    public Cash(double amount, double amountPaid){
-        this.amount = amount;
-        this.amountPaid = amountPaid;
+    public Cash(String description){
+        super(description);
     }
     public void methodPayment(){
         double changeAmount = amountPaid - amount;

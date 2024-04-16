@@ -1,30 +1,29 @@
-package models.Venda;
+package models.Sell;
 
-import models.Payment.Payment;
-import models.People.Client;
+import models.People.Customer;
 import models.Product.Product;
-
-public class Venda {
-    Client client;
+import models.Payment.Payment;
+public class Sell {
+    Customer customer;
     Product product;
     Payment payment;
     private double amount;
     private int quantity;
-    public Venda(Client client, Product product,
-                           Payment payment, double amount, int quantity) {
-        this.client = client;
+    public Sell(Customer customer, Product product,
+                models.Payment.Payment payment, double amount, int quantity) {
+        this.customer = customer;
         this.product = product;
         this.payment = payment;
         this.amount = amount;
         this.quantity = quantity;
     }
 
-    public Client getClient() {
-        return client;
+    public Customer getClient() {
+        return customer;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClient(Customer customer) {
+        this.customer = customer;
     }
 
     public Product getProduct() {
@@ -35,11 +34,11 @@ public class Venda {
         this.product = product;
     }
 
-    public Payment getPayment() {
+    public models.Payment.Payment getPayment() {
         return payment;
     }
 
-    public void setPayment(Payment payment) {
+    public void setPayment(models.Payment.Payment payment) {
         this.payment = payment;
     }
 

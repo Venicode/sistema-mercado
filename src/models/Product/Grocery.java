@@ -5,11 +5,10 @@ public class Grocery extends Product {
 
     public Grocery(String description, double costPrice,
                    double sellingPrice, models.People.Supplier supplier,
-                   int quantity, String expirationDate) {
+                   int quantity, String expirationDate, long barcode) {
         super(description, costPrice, sellingPrice,
-                supplier, quantity);
+                supplier, quantity, barcode);
         this.expirationDate = expirationDate;
-
     }
 
     public String getExpirationDate() {

@@ -14,12 +14,13 @@ public abstract class Product {
     private String brand;
 
     public Product(String description, double costPrice, double sellingPrice,
-                   Supplier supplier, int quantity) {
+                   Supplier supplier, int quantity, long barcode) {
         this.description = description;
         this.costPrice = costPrice;
         this.sellingPrice = sellingPrice;
         this.supplier = supplier;
         this.quantity = quantity;
+        this.barCode = barcode;
     }
 
     public String getDescription() {

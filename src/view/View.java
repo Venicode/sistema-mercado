@@ -14,10 +14,15 @@ public class View {
         System.out.println("7 - Sair do programa");
     }
     public void reportsMenu(){
-        System.out.println("Listar vendas realizadas");
-        System.out.println("Listar produtos cadastrados");
-        System.out.println("Listar clientes cadastrados");
-        System.out.println("Listar fornecedores cadastrados");
+        System.out.println("1 - Listar vendas realizadas");
+        System.out.println("2 - Listar produtos cadastrados");
+        System.out.println("3 - Listar clientes cadastrados");
+        System.out.println("4 - Listar fornecedores cadastrados");
+    }
+    public void listMethodsPayments(){
+        System.out.println("Dinheiro");
+        System.out.println("Cartão de Crédito");
+        System.out.println("PIX");
     }
     public void farewell(){
         System.out.println("Tchau! Até logo!");

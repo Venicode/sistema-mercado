@@ -3,6 +3,10 @@ package models.Payment;
 public class Pix extends Payment {
     private String keyPix;
 
+    public Pix(String keyPix, String description){
+        super(description);
+        this.keyPix = keyPix;
+    }
     public String getKeyPix() {
         return keyPix;
     }

@@ -1,9 +1,9 @@
 package models.People;
 
-public class Client extends People {
+public class Customer extends People {
     private String CPF;
 
-    public Client(String CPF, String name, String phone) {
+    public Customer(String CPF, String name, String phone) {
         super(name, phone);
         this.CPF = CPF;
     }

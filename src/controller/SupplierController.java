@@ -7,12 +7,12 @@ import java.util.ArrayList;
 public class SupplierController {
     private final ArrayList<Supplier> list = new ArrayList<>();
 
-    public void cadastrarFornecedor(Supplier newSupplier) {
+    public void registerSupplier(Supplier newSupplier) {
         list.add(newSupplier);
         System.out.println("Fornecedor cadastrado com sucesso!");
     }
 
-    public void listarFornecedores() {
+    public void listSuppliers() {
         System.out.println("Lista de Fornecedores:");
         for (Supplier i : list) {
             System.out.println(i.getName());

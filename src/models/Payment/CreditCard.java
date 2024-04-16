@@ -3,6 +3,9 @@ package models.Payment;
 public class CreditCard extends Payment {
     private int parcelCount;
     private double amount;
+    public CreditCard(String description){
+        super(description);
+    }
     public void methodPayment(){
         if (parcelCount > 6) {
             amount = amount + (amount * 0.05);

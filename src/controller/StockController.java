@@ -3,29 +3,37 @@ package controller;
 import models.Product.Product;
 import models.Stock.Stock;
 
+import java.util.function.BiConsumer;
+
 public class StockController {
     Stock newStock;
 
     public StockController(Stock newStock){
         this.newStock = newStock;
     }
-    public void cadastrarProdutoNoEstoque(Product newProduct){
-        newStock.getEstoqueProdutos().put(newProduct, newProduct.getQuantity());
+    public void addProductToStock(Product newProduct){
+        newStock.getProductsInStock().put(newProduct, newProduct.getQuantity());
         System.out.println("Produto cadastrado com sucesso!");
     }
-    public void atualizarProdutoNoEstoque(Product newProduct, int newQuantity){
+    public void updateProductInStock(Product newProduct, int newQuantity){
         newProduct.setQuantity(newProduct.getQuantity()-newQuantity);
-        newStock.getEstoqueProdutos().replace(newProduct, newProduct.getQuantity());
-        System.out.println("Estoque do produto atualizado!");
+        newStock.getProductsInStock().replace(newProduct, newProduct.getQuantity());
     }
-    public void listarProdutosNoEstoque(){
+    public void listProductInStock(){
         System.out.println("Lista de produtos no estoque:");
-        for (Product i : newStock.getEstoqueProdutos().keySet()) {
+        for (Product i : newStock.getProductsInStock().keySet()) {
             System.out.print("Nome do produto: "+i.getDescription());
             System.out.println(" Quantidade:" + i.getQuantity());
         }
     }
-    public int saldoAtualEstoque(){
+    public Product getProductInStock(Long barcode){
+        for (Product product: newStock.getProductsInStock().keySet()){
+            if(product.getBarCode() == barcode){
+                return product;
+            }
+        }return null;
+    }
+    public int currentStockBalance(){
         return newStock.getAmountTotal();
     }
 }

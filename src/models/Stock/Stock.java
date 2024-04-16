@@ -9,7 +9,7 @@ public class Stock {
     private Map<Product, Integer> estoqueProdutos = new HashMap<>();
     private int amountTotal;
 
-    public Map<Product, Integer> getEstoqueProdutos() {
+    public Map<Product, Integer> getProductsInStock() {
         return estoqueProdutos;
     }
     public int getAmountTotal() {
