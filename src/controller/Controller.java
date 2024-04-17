@@ -1,8 +1,6 @@
 package controller;
 
 import models.CashRegister.CashRegister;
-import models.People.Customer;
-import models.People.Supplier;
 import models.Stock.Stock;
 import view.View;
 
@@ -18,13 +16,11 @@ public class Controller {
     SupplierController newSupplierController = new SupplierController();
     ProductController newProductController = new ProductController();
     Scanner option = new Scanner(System.in);
-
+    View newView = new View();
     public void controller() {
+        newView.welcome();
         while (true) {
-            View newView = new View();
-            newView.welcome();
             newView.mainMenu();
-
             String answer = option.nextLine();
             if (answer.equals("1")) {
                 newSellController.newSell(
@@ -34,18 +30,30 @@ public class Controller {
                         newCashRegister,
                         option
                 );
+                if (comeBack()) {
+                    continue;
+                }
             }
             if (answer.equals("2")) {
                 newProductController.registerProduct(
                         option,
                         newSupplierController,
                         newStockController);
+                if (comeBack()) {
+                    continue;
+                }
             }
             if (answer.equals("3")) {
                 newCustomerController.registerNewCustomer(option);
+                if (comeBack()) {
+                    continue;
+                }
             }
             if (answer.equals("4")) {
                 newSupplierController.registerNewSupplier(option);
+                if (comeBack()) {
+                    continue;
+                }
             }
             if (answer.equals("5")) {
                 while (true) {
@@ -54,15 +62,27 @@ public class Controller {
                     String choice = option.nextLine();
                     if (choice.equals("1")) {
                         newView.listSales(newSellController.getListSales());
+                        if (comeBack()) {
+                            continue;
+                        }
                     }
                     if (choice.equals("2")) {
-                        newStockController.listProductInStock();
+                        newView.listProductsInStock(newStockController.newStock.getMapProductsInStock());
+                        if (comeBack()) {
+                            continue;
+                        }
                     }
                     if (choice.equals("3")) {
-                        newCustomerController.listCustomers();
+                        newView.listCustomers(newCustomerController.getListCustomersRegistered());
+                        if (comeBack()) {
+                            continue;
+                        }
                     }
                     if (choice.equals("4")) {
-                        newSupplierController.listSuppliers();
+                        newView.listSuppliers(newSupplierController.getListSuppliersRegistered());
+                        if (comeBack()) {
+                            continue;
+                        }
                     }
                     if (choice.equals("5")) {
                         break;
@@ -71,7 +91,9 @@ public class Controller {
             }
             if (answer.equals("6")) {
                 System.out.println("Saldo atual do caixa: " + newCashRegister.getBalance());
-                continue;
+                if (comeBack()) {
+                    continue;
+                }
             }
             if (answer.equals("7")) {
                 newView.farewell();
@@ -79,5 +101,11 @@ public class Controller {
             }
         }
         option.close();
+    }
+
+    private boolean comeBack() {
+        System.out.println("Digite 1 para voltar");
+        String choiceReturn = option.nextLine();
+        return choiceReturn.equals("1");
     }
 }

@@ -4,6 +4,7 @@ import models.CashRegister.CashRegister;
 import models.Payment.Payment;
 import models.Product.Product;
 import models.Sell.Sell;
+import view.View;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,24 +17,18 @@ public class SellController {
         return listSales;
     }
 
-    public void validateSell(Sell sell, double amountCostumer, StockController stock, CashRegister newCashRegister) {
-        if (sell.getQuantity() > sell.getProduct().getQuantity()) {
-            System.out.println("Quantidade não disponível no estoque.");
-        }
-        if (amountCostumer < sell.getAmount()) {
-            System.out.println("Valor insuficiente para a compra.");
-        } else {
-            listSales.add(sell);
-            stock.updateProductInStock(sell.getProduct(), sell.getQuantity());
-            newCashRegister.setBalance(sell.getAmount());
-            System.out.println("Venda realizada com sucesso");
-            System.out.println("O cliente: " + sell.getClient().getName() +
-                    " realizou a compra do produto: " +
-                    sell.getProduct().getDescription() +
-                    " no valor de " + sell.getAmount());
-            System.out.println("Novo estoque do produto: " + stock.newStock.getProductsInStock().get(sell.getProduct()));
-            System.out.println("Saldo do caixa: " + newCashRegister.getBalance());
-        }
+    public void addSellToList(Sell sell, double amountCostumer, StockController stock, CashRegister newCashRegister) {
+        listSales.add(sell);
+        stock.updateProductInStock(sell.getProduct(), sell.getQuantity());
+        newCashRegister.setBalance(sell.getAmount());
+        System.out.println("Venda realizada com sucesso");
+        System.out.println("O cliente: " + sell.getClient().getName() +
+                " realizou a compra do produto: " +
+                sell.getProduct().getDescription() +
+                " no valor de " + sell.getAmount());
+        System.out.println("Novo estoque do produto: " + stock.newStock.getMapProductsInStock().get(sell.getProduct()));
+        System.out.println("Saldo do caixa: " + newCashRegister.getBalance());
+
     }
 
     public void newSell(CustomerController newCustomerController,
@@ -41,7 +36,7 @@ public class SellController {
                         PaymentController newPaymentController,
                         CashRegister newCashRegister,
                         Scanner option) {
-        newPaymentController.putMethodsPayments();
+
         while (true) {
             System.out.println("Informe o CPF do cliente");
             String cpf = option.nextLine();
@@ -56,16 +51,22 @@ public class SellController {
                     Product sellProduct = newStockController.getProductInStock(longBarCode);
                     System.out.println("Informe a quantidade que deseja comprar");
                     int quantity = Integer.parseInt(option.nextLine());
+                    if (quantity > sellProduct.getQuantity()) {
+                        System.out.println("Quantidade não disponível no estoque.");
+                        System.out.println("Quantidade de estoque do produto: " + sellProduct.getQuantity());
+                        continue;
+                    }
                     double amount = quantity * sellProduct.getSellingPrice();
-                    System.out.println("Valor da venda: "+ amount);
+                    System.out.println("Valor da venda: " + amount);
                     System.out.println("Qual seria o tipo de pagamento?");
                     while (true) {
-                        newPaymentController.listMethodPayments();
-                        String optionMethodPayment = option.nextLine();
+                        View newView = new View();
+                        newView.listMethodsPayments(newPaymentController.listMethodsPaymentsRegistered);
+                        int optionMethodPayment = Integer.parseInt(option.nextLine());
+                        if (newPaymentController.checkIfMethodPaymentRegistered(optionMethodPayment)) {
 
-                        if (newPaymentController.checkIfMethodPaymentRegistered(optionMethodPayment.toLowerCase())) {
-                            Payment methodPayment = newPaymentController.getMethodPayment(optionMethodPayment.toLowerCase());
-                                double amountCustomer = newPaymentController.realizeMethodPayment(methodPayment, amount);
+                            Payment methodPayment = newPaymentController.getMethodPayment(optionMethodPayment);
+                            double amountCustomer = newPaymentController.realizeMethodPayment(methodPayment, amount);
                             Sell newSell = new Sell(
                                     newCustomerController.getCustomer(cpf),
                                     sellProduct,
@@ -73,7 +74,21 @@ public class SellController {
                                     amount,
                                     quantity
                             );
-                            validateSell(newSell,amountCustomer, newStockController, newCashRegister);
+                            System.out.println("Deseja aplicar algum desconto? S/N");
+                            String answer = option.nextLine().toUpperCase();
+                            if (answer.equals("S")) {
+                                while (true) {
+                                    System.out.println("Qual o valor do desconto?");
+                                    double discount = Double.parseDouble(option.nextLine());
+                                    if (discount <= 0) {
+                                        System.out.println("Valor do desconto inválido, digite algo maior que 0.");
+                                        continue;
+                                    }
+                                    newSell.setAmount(newSell.calculateDiscount(discount));
+                                    break;
+                                }
+                            }
+                            addSellToList(newSell, amountCustomer, newStockController, newCashRegister);
                             break;
                         } else {
                             System.out.println("Método de pagamento não inválido");

@@ -3,6 +3,7 @@ package controller;
 import models.People.Supplier;
 import models.Product.Drinks;
 import models.Product.Grocery;
+import view.View;
 
 import java.util.Scanner;
 
@@ -29,9 +30,11 @@ public class ProductController {
             System.out.println("Informe o código de barras do produto");
             long barcode = Long.parseLong(option.nextLine());
             while (true) {
-                System.out.println("Qual categoria de produto deseja cadastrar? Alimentício ou bebida");
+                System.out.println("Qual categoria de produto deseja cadastrar?");
+                System.out.println("1 - Alimentício");
+                System.out.println("2 - Bebidas");
                 String category = option.nextLine();
-                if (category.equals("Alimentício")) {
+                if (category.equals("1")) {
                     Grocery newGrocery = new Grocery(
                             description,
                             costPrice,
@@ -44,7 +47,7 @@ public class ProductController {
                     newStockController.addProductToStock(newGrocery);
                     break;
                 }
-                if (category.equals("Bebida")) {
+                if (category.equals("2")) {
                     System.out.println("Informe a quantidade de litros:");
                     double liters = Double.parseDouble(option.nextLine());
                     System.out.println("Bebida tem teor alcólico? S/N");

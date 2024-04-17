@@ -1,16 +1,19 @@
 package controller;
 
-import models.People.Customer;
 import models.People.Supplier;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SupplierController {
-    private final ArrayList<Supplier> list = new ArrayList<>();
+    final ArrayList<Supplier> listSuppliersRegistered = new ArrayList<>();
+
+    public ArrayList<Supplier> getListSuppliersRegistered() {
+        return listSuppliersRegistered;
+    }
 
     public void addSupplierToList(Supplier newSupplier) {
-        list.add(newSupplier);
+        listSuppliersRegistered.add(newSupplier);
         System.out.println("Fornecedor cadastrado com sucesso!");
     }
     public void registerNewSupplier(Scanner option) {
@@ -31,21 +34,15 @@ public class SupplierController {
         addSupplierToList(newSupplier);
     }
     public boolean checkIfSupplierRegistered(String CNPJ) {
-        for (Supplier supplier : list) {
+        for (Supplier supplier : listSuppliersRegistered) {
             if (supplier.getCNPJ().equals(CNPJ)) {
                 return true;
             }
         }
         return false;
     }
-    public void listSuppliers() {
-        System.out.println("Lista de Fornecedores:");
-        for (Supplier i : list) {
-            System.out.println(i.getName());
-        }
-    }
     public Supplier getSupplier(String CNPJ) {
-        for (Supplier supplier : list) {
+        for (Supplier supplier : listSuppliersRegistered) {
             if (supplier.getCNPJ().equals(CNPJ)) {
                 return supplier;
             }

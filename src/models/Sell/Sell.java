@@ -3,7 +3,9 @@ package models.Sell;
 import models.People.Customer;
 import models.Product.Product;
 import models.Payment.Payment;
-public class Sell {
+import services.IDiscount;
+
+public class Sell implements IDiscount {
     Customer customer;
     Product product;
     Payment payment;
@@ -56,5 +58,10 @@ public class Sell {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public double calculateDiscount(double discount) {
+        return amount-discount;
     }
 }

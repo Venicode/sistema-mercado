@@ -1,17 +1,19 @@
 package controller;
 
 import models.People.Customer;
-import models.People.Supplier;
-import models.Product.Grocery;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomerController {
-    private final ArrayList<Customer> list = new ArrayList<>();
+    final ArrayList<Customer> listCustomersRegistered = new ArrayList<>();
+
+    public ArrayList<Customer> getListCustomersRegistered() {
+        return listCustomersRegistered;
+    }
 
     public void addCustomerToList(Customer newCustomer) {
-        list.add(newCustomer);
+        listCustomersRegistered.add(newCustomer);
         System.out.println("Cliente cadastrado com sucesso!");
     }
 
@@ -31,7 +33,7 @@ public class CustomerController {
     }
 
     public boolean checkIfCustomerRegistered(String CPF) {
-        for (Customer customer : list) {
+        for (Customer customer : listCustomersRegistered) {
             if (customer.getCPF().equals(CPF)) {
                 return true;
             }
@@ -39,15 +41,8 @@ public class CustomerController {
         return false;
     }
 
-    public void listCustomers() {
-        System.out.println("Lista de clientes cadastrados:");
-        for (Customer i : list) {
-            System.out.println(i.getName());
-        }
-    }
-
     public Customer getCustomer(String cpf) {
-        for (Customer customer : list) {
+        for (Customer customer : listCustomersRegistered) {
             if (customer.getCPF().equals(cpf)) {
                 return customer;
             }

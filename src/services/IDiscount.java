@@ -1,5 +1,5 @@
 package services;
 
 public interface IDiscount {
-    public void calculateDiscount();
+    public double calculateDiscount(double discount);
 }
