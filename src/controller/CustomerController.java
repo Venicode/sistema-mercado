@@ -1,15 +1,33 @@
 package controller;
 
 import models.People.Customer;
+import models.People.Supplier;
+import models.Product.Grocery;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CustomerController {
     private final ArrayList<Customer> list = new ArrayList<>();
 
-    public void registerCustomer(Customer newCustomer) {
+    public void addCustomerToList(Customer newCustomer) {
         list.add(newCustomer);
         System.out.println("Cliente cadastrado com sucesso!");
+    }
+
+    public void registerNewCustomer(Scanner option) {
+        System.out.println("Informe o CPF do cliente");
+        String cpf = option.nextLine();
+        System.out.println("Informe o nome do cliente");
+        String name = option.nextLine();
+        System.out.println("Informe o telefone do cliente");
+        String phone = option.nextLine();
+        Customer newCustomer = new Customer(
+                cpf,
+                name,
+                phone
+        );
+        addCustomerToList(newCustomer);
     }
 
     public boolean checkIfCustomerRegistered(String CPF) {

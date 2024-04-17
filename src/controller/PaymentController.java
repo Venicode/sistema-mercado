@@ -55,6 +55,7 @@ public class PaymentController {
             methodPayment1.setAmount(amountPaid);
             methodPayment1.setAmountPaid(cash);
             methodPayment1.methodPayment();
+            return cash;
         }
         if (methodPayment.getDescriptionMethodPayment().equals("pix")) {
             System.out.println("Pague na chave PIX abaixo:");

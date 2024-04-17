@@ -1,5 +1,9 @@
 package view;
 
+import models.Sell.Sell;
+
+import java.util.ArrayList;
+
 public class View {
     public void welcome(){
         System.out.println("Olá, o que deseja fazer hoje?");
@@ -18,11 +22,23 @@ public class View {
         System.out.println("2 - Listar produtos cadastrados");
         System.out.println("3 - Listar clientes cadastrados");
         System.out.println("4 - Listar fornecedores cadastrados");
+        System.out.println("5 - Voltar");
     }
     public void listMethodsPayments(){
         System.out.println("Dinheiro");
         System.out.println("Cartão de Crédito");
         System.out.println("PIX");
+    }
+    public void listSales(ArrayList<Sell> listSales) {
+        System.out.println("Lista de vendas realizadas");
+        for (Sell sell : listSales) {
+            System.out.println("Cliente: " + sell.getClient().getName()
+                    + " Valor venda: " + sell.getAmount()
+                    + " Produto: " + sell.getProduct().getDescription()
+                    + " Quantidade: " + sell.getQuantity()
+                    + " Forma de pagamento: "
+                    + sell.getPayment().getDescriptionMethodPayment());
+        }
     }
     public void farewell(){
         System.out.println("Tchau! Até logo!");

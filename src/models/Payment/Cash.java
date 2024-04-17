@@ -8,15 +8,13 @@ public class Cash extends Payment {
         super(description);
     }
     public void methodPayment(){
-        double changeAmount = amountPaid - amount;
-        if(changeAmount<0){
+        if(amountPaid<amount){
             System.out.println("Dinheiro insuficiente para o pagamento.");
-            System.out.println("Falta: "+changeAmount);
+            System.out.println("Falta: "+ (amount - amountPaid));
         }
-        if(changeAmount ==0){
-           this.amount = amountPaid;
-        } System.out.println("Valor para troco: "+changeAmount);
-        this.amount = changeAmount;
+        else {
+            System.out.println("Valor para troco: " + (amountPaid - amount));
+        }
     }
 
     public double getAmount() {

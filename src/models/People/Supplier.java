@@ -3,10 +3,10 @@ package models.People;
 public class Supplier extends People {
     private String email;
     private String CNPJ;
-    public Supplier(String name, String phone, String email, String CNPJ){
+    public Supplier(String CNPJ, String name, String phone, String email){
         super(name, phone);
-        this.email = email;
         this.CNPJ = CNPJ;
+        this.email = email;
     }
 
     public String getEmail() {
