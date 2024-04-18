@@ -12,12 +12,12 @@ import java.util.Scanner;
 public class SellController {
 
     final ArrayList<Sell> listSales = new ArrayList<>();
-
+    IDiscountController newIDiscountController = new IDiscountController();
     public ArrayList<Sell> getListSales() {
         return listSales;
     }
 
-    public void addSellToList(Sell sell, double amountCostumer, StockController stock, CashRegister newCashRegister) {
+    public void addSellToList(Sell sell, StockController stock, CashRegister newCashRegister) {
         listSales.add(sell);
         stock.updateProductInStock(sell.getProduct(), sell.getQuantity());
         newCashRegister.setBalance(sell.getAmount());
@@ -46,7 +46,6 @@ public class SellController {
                 long longBarCode = Long.parseLong(barcode);
                 if (newStockController.getProductInStock(longBarCode) == null) {
                     System.out.println("Produto não cadatrado. Realize o cadastro na opção do menu principal.");
-                    break;
                 } else {
                     Product sellProduct = newStockController.getProductInStock(longBarCode);
                     System.out.println("Informe a quantidade que deseja comprar");
@@ -58,15 +57,14 @@ public class SellController {
                     }
                     double amount = quantity * sellProduct.getSellingPrice();
                     System.out.println("Valor da venda: " + amount);
-                    System.out.println("Qual seria o tipo de pagamento?");
+
                     while (true) {
                         View newView = new View();
                         newView.listMethodsPayments(newPaymentController.listMethodsPaymentsRegistered);
                         int optionMethodPayment = Integer.parseInt(option.nextLine());
                         if (newPaymentController.checkIfMethodPaymentRegistered(optionMethodPayment)) {
-
                             Payment methodPayment = newPaymentController.getMethodPayment(optionMethodPayment);
-                            double amountCustomer = newPaymentController.realizeMethodPayment(methodPayment, amount);
+                            newPaymentController.realizeMethodPayment(methodPayment,amount);
                             Sell newSell = new Sell(
                                     newCustomerController.getCustomer(cpf),
                                     sellProduct,
@@ -77,18 +75,9 @@ public class SellController {
                             System.out.println("Deseja aplicar algum desconto? S/N");
                             String answer = option.nextLine().toUpperCase();
                             if (answer.equals("S")) {
-                                while (true) {
-                                    System.out.println("Qual o valor do desconto?");
-                                    double discount = Double.parseDouble(option.nextLine());
-                                    if (discount <= 0) {
-                                        System.out.println("Valor do desconto inválido, digite algo maior que 0.");
-                                        continue;
-                                    }
-                                    newSell.setAmount(newSell.calculateDiscount(discount));
-                                    break;
-                                }
+                                newIDiscountController.applyDiscount(newSell, option);
                             }
-                            addSellToList(newSell, amountCustomer, newStockController, newCashRegister);
+                            addSellToList(newSell, newStockController, newCashRegister);
                             break;
                         } else {
                             System.out.println("Método de pagamento não inválido");
@@ -108,6 +97,4 @@ public class SellController {
 
         }
     }
-
-
 }

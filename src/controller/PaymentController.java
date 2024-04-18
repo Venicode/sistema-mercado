@@ -12,15 +12,11 @@ public class PaymentController {
 
     final ArrayList<Payment> listMethodsPaymentsRegistered = new ArrayList<>();
 
-    public ArrayList<Payment> getListMethodsPaymentsRegistered() {
-        return listMethodsPaymentsRegistered;
-    }
-
     Scanner option = new Scanner(System.in);
     public PaymentController(){
-        putMethodsPayments();
+        registerMethodsPayments();
     }
-    public void putMethodsPayments() {
+    private void registerMethodsPayments() {
         Cash newCashMethod = new Cash("dinheiro");
         CreditCard newCreditCardMethod = new CreditCard("crédito");
         Pix newPixMethod = new Pix("11987102458", "pix");
@@ -39,41 +35,39 @@ public class PaymentController {
     }
 
     public Payment getMethodPayment(int index) {
-        return listMethodsPaymentsRegistered.get(index-1);
+        return listMethodsPaymentsRegistered.get(index);
     }
-
-    public double realizeMethodPayment(Payment methodPayment, double amountPaid) {
+    public double realizeMethodPayment(Payment methodPayment, double amount) {
 
         if (methodPayment.getDescriptionMethodPayment().equals("dinheiro")) {
             while (true) {
                 System.out.println("Informe o valor do dinheiro");
                 double cash = Double.parseDouble(option.nextLine());
-                if (cash < amountPaid) {
+                if (cash < amount) {
                     System.out.println("Valor inferior a compra.");
                     continue;
                 }
                 Cash methodPayment1 = (Cash) methodPayment;
-                methodPayment1.setAmount(amountPaid);
+                methodPayment1.setAmount(amount);
                 methodPayment1.setAmountPaid(cash);
                 methodPayment1.methodPayment();
                 return cash;
             }
         }
-            if (methodPayment.getDescriptionMethodPayment().equals("pix")) {
-                System.out.println("Pague na chave PIX abaixo:");
-                Pix methodPaymentPIX = (Pix) methodPayment;
-                methodPaymentPIX.methodPayment();
-            }
-            if (methodPayment.getDescriptionMethodPayment().equals("crédito")) {
-                CreditCard creditCardMethod = (CreditCard) methodPayment;
-                System.out.println("Em quantas parcelas deseja fazer a compra?");
-                int parcelCount = Integer.parseInt(option.nextLine());
-                creditCardMethod.setAmount(amountPaid);
-                creditCardMethod.setParcelCount(parcelCount);
-                creditCardMethod.methodPayment();
-                return creditCardMethod.getAmount();
-            }
-            return 0;
+        if (methodPayment.getDescriptionMethodPayment().equals("pix")) {
+            System.out.println("Pague na chave PIX abaixo:");
+            Pix methodPaymentPIX = (Pix) methodPayment;
+            methodPaymentPIX.methodPayment();
         }
-
+        if (methodPayment.getDescriptionMethodPayment().equals("crédito")) {
+            CreditCard creditCardMethod = (CreditCard) methodPayment;
+            System.out.println("Em quantas parcelas deseja fazer a compra?");
+            int parcelCount = Integer.parseInt(option.nextLine());
+            creditCardMethod.setAmount(amount);
+            creditCardMethod.setParcelCount(parcelCount);
+            creditCardMethod.methodPayment();
+            return creditCardMethod.getAmount();
+        }
+        return 0;
+    }
 }

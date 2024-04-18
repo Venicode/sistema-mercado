@@ -1,5 +1,6 @@
 package models.Product;
 
+import models.Category.Category;
 import models.People.Supplier;
 
 public abstract class Product {
@@ -9,18 +10,19 @@ public abstract class Product {
     private Supplier supplier;
     private String productionDate;
     private int quantity;
-    private String category;
+    private Category category;
     private long barCode;
     private String brand;
 
     public Product(String description, double costPrice, double sellingPrice,
-                   Supplier supplier, int quantity, long barcode) {
+                   Supplier supplier, int quantity, long barcode, Category category) {
         this.description = description;
         this.costPrice = costPrice;
         this.sellingPrice = sellingPrice;
         this.supplier = supplier;
         this.quantity = quantity;
         this.barCode = barcode;
+        this.category = category;
     }
 
     public String getDescription() {
@@ -71,11 +73,11 @@ public abstract class Product {
         this.quantity = quantity;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

@@ -1,15 +1,15 @@
 package models.Login;
 
 public class Login {
-    private String employeerID;
+    private String user;
     private String password;
 
-    public String getEmployeerID() {
-        return employeerID;
+    public String getUser() {
+        return user;
     }
 
-    public void setEmployeerID(String employeerID) {
-        this.employeerID = employeerID;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getPassword() {

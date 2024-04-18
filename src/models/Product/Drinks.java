@@ -1,4 +1,6 @@
 package models.Product;
+import models.Category.Category;
+import models.People.Supplier;
 
 public class Drinks extends Product {
     private double liters;
@@ -6,10 +8,11 @@ public class Drinks extends Product {
     private String expirationDate;
 
     public Drinks(String description, double costPrice,
-                  double sellingPrice, models.People.Supplier supplier,
+                  double sellingPrice, Supplier supplier,
                   int quantity, double liters, boolean alcoholic,
-                  String expirationDate, long barcode) {
-        super(description, costPrice, sellingPrice, supplier, quantity, barcode);
+                  String expirationDate, long barcode, Category category) {
+
+        super(description, costPrice, sellingPrice, supplier, quantity, barcode, category);
         this.liters = liters;
         this.alcoholic = alcoholic;
         this.expirationDate = expirationDate;

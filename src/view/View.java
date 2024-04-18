@@ -1,12 +1,13 @@
 package view;
 
+import controller.StockController;
+import models.Category.Category;
 import models.Payment.Payment;
 import models.People.Customer;
 import models.People.Supplier;
 import models.Product.Product;
 import models.Sell.Sell;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -20,10 +21,10 @@ public class View {
                 ": ╚████╔╝ ███████╗██║ ╚████║██║    ██║ ╚═╝ ██║██║  ██║██║  ██║██║  ██╗███████╗   ██║   :\n" +
                 ":  ╚═══╝  ╚══════╝╚═╝  ╚═══╝╚═╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   :\n" +
                 "························································································");
-        System.out.println("\no que deseja fazer hoje?");
     }
 
     public void mainMenu() {
+        System.out.println("Menu de opções:");
         System.out.println("1 - Realizar venda");
         System.out.println("2 - Cadastrar produto");
         System.out.println("3 - Cadastrar cliente");
@@ -42,16 +43,20 @@ public class View {
     }
 
     public void listMethodsPayments(ArrayList<Payment> listMethodsPaymentsRegistered) {
+        System.out.println("Qual seria o tipo de pagamento?");
         int index = 0;
         for (Payment methodPayment : listMethodsPaymentsRegistered) {
-            System.out.println((index += 1) + " - " + methodPayment.getDescriptionMethodPayment());
+            System.out.println((index) + " - " + methodPayment.getDescriptionMethodPayment());
+            index+=1;
         }
     }
 
-    public void listCategorysProducts(ArrayList<String> listCategorysProducts) {
+    public void listCategorys(ArrayList<Category> listCategorys) {
+        System.out.println("Qual categoria de produto deseja cadastrar?");
         int index = 0;
-        for (String category : listCategorysProducts) {
-            System.out.println((index += 1) + " - " + category);
+        for (Category category : listCategorys) {
+            System.out.println((index) + " - " + category.getDescriptionCategory());
+            index+=1;
         }
     }
 
@@ -78,12 +83,18 @@ public class View {
         }
     }
 
-    public void listProductsInStock(Map<Product, Integer> getProductsInStock) {
+    public void listProductsInStock(Map<Product, Integer> getProductsInStock, StockController newStockController) {
         System.out.println("*****************************");
         System.out.println("Lista de produtos no estoque:");
         System.out.println("*****************************");
+        System.out.println("Total no Estoque: " + newStockController.currentStockBalance());
         for (Product i : getProductsInStock.keySet()) {
-            System.out.print("\nNome do produto: " + i.getDescription() + " Quantidade:" + i.getQuantity() + "\n");
+            System.out.print("\nDescrição do Produto: " + i.getDescription()
+                    + " Quantidade: " + i.getQuantity()
+                    + " Fornecedor: " + i.getSupplier().getName()
+                    + " Código de barras: " + i.getBarCode()
+                    + " Categoria: " + i.getCategory().getDescriptionCategory()
+                    + "\n");
         }
     }
 
