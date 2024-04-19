@@ -21,9 +21,9 @@ public class Controller {
     LoginController newLoginController = new LoginController();
 
     private boolean comeBack() {
-        System.out.println("Digite 1 para voltar:");
+        System.out.println("Aperte qualquer tecla para voltar");
         String choiceReturn = option.nextLine();
-        return choiceReturn.equals("1");
+        return true;
     }
 
     public void controller() {

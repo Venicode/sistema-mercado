@@ -46,6 +46,7 @@ public class SellController {
                 long longBarCode = Long.parseLong(barcode);
                 if (newStockController.getProductInStock(longBarCode) == null) {
                     System.out.println("Produto não cadatrado. Realize o cadastro na opção do menu principal.");
+                    break;
                 } else {
                     Product sellProduct = newStockController.getProductInStock(longBarCode);
                     System.out.println("Informe a quantidade que deseja comprar:");
