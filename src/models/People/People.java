@@ -2,7 +2,6 @@ package models.People;
 
 public abstract class People {
     private String name;
-    private String address;
     private String phone;
 
     public People(String name, String phone) {
@@ -16,14 +15,6 @@ public abstract class People {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPhone() {

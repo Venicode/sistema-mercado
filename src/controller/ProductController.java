@@ -15,22 +15,22 @@ public class ProductController {
                                 SupplierController newSupplierController,
                                 StockController newStockController) {
 
-        System.out.println("Informe a descrição do produto");
+        System.out.println("Informe a descrição do produto:");
         String description = option.nextLine();
-        System.out.println("Informe o valor de compra");
+        System.out.println("Informe o valor de compra:");
         double costPrice = Double.parseDouble(option.nextLine());
-        System.out.println("Informe o valor de venda");
+        System.out.println("Informe o valor de venda:");
         double sellingPrice = Double.parseDouble(option.nextLine());
-        System.out.println("Informe o CNPJ do fornecedor");
+        System.out.println("Informe o CNPJ do fornecedor:");
         String CNPJ = option.nextLine();
 
         if (newSupplierController.checkIfSupplierRegistered(CNPJ)) {
             Supplier newSupplier = newSupplierController.getSupplier(CNPJ);
-            System.out.println("Informe a quantidade do produto em estoque");
+            System.out.println("Informe a quantidade do produto em estoque:");
             int quantity = Integer.parseInt(option.nextLine());
-            System.out.println("Informe a data de validade");
+            System.out.println("Informe a data de validade:");
             String expirationDate = option.nextLine();
-            System.out.println("Informe o código de barras do produto");
+            System.out.println("Informe o código de barras do produto:");
             long barcode = Long.parseLong(option.nextLine());
 
             while (true) {
@@ -75,7 +75,7 @@ public class ProductController {
                 }
 
                 else {
-                    System.out.println("Categoria inválida");
+                    System.out.println("Categoria inválida.");
                 }
             }
         } else {

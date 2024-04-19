@@ -37,11 +37,11 @@ public class PaymentController {
     public Payment getMethodPayment(int index) {
         return listMethodsPaymentsRegistered.get(index);
     }
-    public double realizeMethodPayment(Payment methodPayment, double amount) {
+    public double putMethodPayment(Payment methodPayment, double amount) {
 
         if (methodPayment.getDescriptionMethodPayment().equals("dinheiro")) {
             while (true) {
-                System.out.println("Informe o valor do dinheiro");
+                System.out.println("Informe o valor do dinheiro:");
                 double cash = Double.parseDouble(option.nextLine());
                 if (cash < amount) {
                     System.out.println("Valor inferior a compra.");

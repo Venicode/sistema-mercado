@@ -15,10 +15,10 @@ public class LoginController {
         return ID.equals(newLogin.getUser()) && password.equals(newLogin.getPassword());
     }
     public boolean login(Scanner option){
-        System.out.println("\nRealize seu login:");
+        System.out.println("\nRealize seu login");
         System.out.println("Informe seu usuário:");
         String user = option.nextLine();
-        System.out.println("Informe sua senha");
+        System.out.println("Informe sua senha:");
         String password = option.nextLine();
         if(checkLogin(user,password)){
             System.out.println("Acesso liberado!\n");

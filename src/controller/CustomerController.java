@@ -18,11 +18,11 @@ public class CustomerController {
     }
 
     public void registerNewCustomer(Scanner option) {
-        System.out.println("Informe o CPF do cliente");
+        System.out.println("Informe o CPF do cliente:");
         String cpf = option.nextLine();
-        System.out.println("Informe o nome do cliente");
+        System.out.println("Informe o nome do cliente:");
         String name = option.nextLine();
-        System.out.println("Informe o telefone do cliente");
+        System.out.println("Informe o telefone do cliente:");
         String phone = option.nextLine();
         Customer newCustomer = new Customer(
                 cpf,

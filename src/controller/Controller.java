@@ -1,7 +1,6 @@
 package controller;
 
 import models.CashRegister.CashRegister;
-import models.Login.Login;
 import models.Stock.Stock;
 import view.View;
 
@@ -46,27 +45,40 @@ public class Controller {
                     }
                 }
                 if (answer.equals("2")) {
-                    newProductController.registerProduct(
-                            option,
-                            newSupplierController,
-                            newStockController);
-                    if (comeBack()) {
-                        continue;
+                    while (true) {
+                        newView.cadastro();
+                        System.out.println("Escolha uma opção:");
+                        String choice = option.nextLine();
+                        if (choice.equals("1")) {
+                            newProductController.registerProduct(
+                                    option,
+                                    newSupplierController,
+                                    newStockController);
+                            if (comeBack()) {
+                                continue;
+                            }
+                        }
+                        if (choice.equals("2")) {
+                            newCustomerController.registerNewCustomer(option);
+                            if (comeBack()) {
+                                continue;
+                            }
+                        }
+                        if (choice.equals("3")) {
+                            newSupplierController.registerNewSupplier(option);
+                            if (comeBack()) {
+                                continue;
+                            }
+                        }
+                        if (choice.equals("4")) {
+                            break;
+                        } else {
+                            System.out.println("Opção inválida.");
+                            continue;
+                        }
                     }
                 }
                 if (answer.equals("3")) {
-                    newCustomerController.registerNewCustomer(option);
-                    if (comeBack()) {
-                        continue;
-                    }
-                }
-                if (answer.equals("4")) {
-                    newSupplierController.registerNewSupplier(option);
-                    if (comeBack()) {
-                        continue;
-                    }
-                }
-                if (answer.equals("5")) {
                     while (true) {
                         newView.reportsMenu();
                         System.out.println("Escolha uma opção:");
@@ -97,16 +109,19 @@ public class Controller {
                         }
                         if (choice.equals("5")) {
                             break;
+                        } else {
+                            System.out.println("Opção inválida.");
+                            continue;
                         }
                     }
                 }
-                if (answer.equals("6")) {
+                if (answer.equals("4")) {
                     System.out.println("Saldo atual do caixa: " + newCashRegister.getBalance());
                     if (comeBack()) {
                         continue;
                     }
                 }
-                if (answer.equals("7")) {
+                if (answer.equals("5")) {
                     newView.farewell();
                     break;
                 }

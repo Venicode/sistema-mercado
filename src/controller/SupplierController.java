@@ -17,13 +17,13 @@ public class SupplierController {
         System.out.println("Fornecedor cadastrado com sucesso!");
     }
     public void registerNewSupplier(Scanner option) {
-        System.out.println("Informe o CNPJ do fornecedor");
+        System.out.println("Informe o CNPJ do fornecedor:");
         String cnpj = option.nextLine();
-        System.out.println("Informe o nome do fornecedor");
+        System.out.println("Informe o nome do fornecedor:");
         String name = option.nextLine();
-        System.out.println("Informe o telefone do fornecedor");
+        System.out.println("Informe o telefone do fornecedor:");
         String phone = option.nextLine();
-        System.out.println("Informe o email do fornecedor");
+        System.out.println("Informe o email do fornecedor:");
         String email = option.nextLine();
         Supplier newSupplier = new Supplier(
           cnpj,

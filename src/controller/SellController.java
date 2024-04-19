@@ -21,9 +21,9 @@ public class SellController {
         listSales.add(sell);
         stock.updateProductInStock(sell.getProduct(), sell.getQuantity());
         newCashRegister.setBalance(sell.getAmount());
-        System.out.println("Venda realizada com sucesso");
-        System.out.println("O cliente: " + sell.getClient().getName() +
-                " realizou a compra do produto: " +
+        System.out.println("Venda realizada com sucesso!");
+        System.out.println("O cliente " + sell.getClient().getName() +
+                " realizou comprou o produto " +
                 sell.getProduct().getDescription() +
                 " no valor de " + sell.getAmount());
         System.out.println("Novo estoque do produto: " + stock.newStock.getMapProductsInStock().get(sell.getProduct()));
@@ -38,17 +38,17 @@ public class SellController {
                         Scanner option) {
 
         while (true) {
-            System.out.println("Informe o CPF do cliente");
+            System.out.println("Informe o CPF do cliente:");
             String cpf = option.nextLine();
             if (newCustomerController.checkIfCustomerRegistered(cpf)) {
-                System.out.println("Informe o código de barras do produto");
+                System.out.println("Informe o código de barras do produto:");
                 String barcode = option.nextLine();
                 long longBarCode = Long.parseLong(barcode);
                 if (newStockController.getProductInStock(longBarCode) == null) {
                     System.out.println("Produto não cadatrado. Realize o cadastro na opção do menu principal.");
                 } else {
                     Product sellProduct = newStockController.getProductInStock(longBarCode);
-                    System.out.println("Informe a quantidade que deseja comprar");
+                    System.out.println("Informe a quantidade que deseja comprar:");
                     int quantity = Integer.parseInt(option.nextLine());
                     if (quantity > sellProduct.getQuantity()) {
                         System.out.println("Quantidade não disponível no estoque.");
@@ -64,12 +64,12 @@ public class SellController {
                         int optionMethodPayment = Integer.parseInt(option.nextLine());
                         if (newPaymentController.checkIfMethodPaymentRegistered(optionMethodPayment)) {
                             Payment methodPayment = newPaymentController.getMethodPayment(optionMethodPayment);
-                            newPaymentController.realizeMethodPayment(methodPayment,amount);
+                            double amountCustomer = newPaymentController.putMethodPayment(methodPayment,amount);
                             Sell newSell = new Sell(
                                     newCustomerController.getCustomer(cpf),
                                     sellProduct,
                                     methodPayment,
-                                    amount,
+                                    amountCustomer,
                                     quantity
                             );
                             System.out.println("Deseja aplicar algum desconto? S/N");
@@ -80,12 +80,12 @@ public class SellController {
                             addSellToList(newSell, newStockController, newCashRegister);
                             break;
                         } else {
-                            System.out.println("Método de pagamento não inválido");
+                            System.out.println("Método de pagamento não inválido.");
                         }
                     }
-                    System.out.println("Deseja realizar mais alguma operação? Digite Sim ou Não");
-                    String choice = option.nextLine().toLowerCase();
-                    if (choice.equals("sim")) {
+                    System.out.println("Deseja realizar mais alguma operação? S/N");
+                    String choice = option.nextLine().toUpperCase();
+                    if (choice.equals("S")) {
                         continue;
                     }
                     break;
