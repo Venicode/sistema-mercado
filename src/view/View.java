@@ -36,7 +36,7 @@ public class View {
 
     public void cadastro() {
         System.out.println("\n-------------------");
-        System.out.println("OPÇÕES DE CADASTRO:");
+        System.out.println("OPÇÕES DE CADASTRO");
         System.out.println("-------------------");
         System.out.println("1 - Cadastrar produto");
         System.out.println("2 - Cadastrar cliente");
