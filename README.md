@@ -14,3 +14,13 @@ Antes de desenvolver o projeto, criei um diagrama UML que apesar de ter sofrido 
 
 ## Diagrama UML
 ![DIAGRAMA UML](diagramaUML.png)
+
+## Como executar o programa
+
+Se você quiser acompanhar o projeto que estou desenvolvendo e executar na sua máquina, basta baixar o arquivo sistema-mercado.jar e colocar dentro da sua pasta users ou usuários que consta no seu disco C. Isto é opcional, voce pode colocar em qualquer pasta mas caso queira executar sem muito trabalho para navegar entre os diretórios, recomendo este caminho.
+Feito isso, abra o seu prompt de comando ou cmd e execute o comando "java -jar sistema-mercado.jar". Feito isso, ao apertar a tecla Enter, você terá acesso ao programa, onde o LOGIN é:
+- User
+- 123
+
+Segue exemplo abaixo:
+![image](https://github.com/Venicode/sistema-mercado/assets/44931124/e8c86a63-6a31-434c-b3d4-a3f631cdc7ad)
