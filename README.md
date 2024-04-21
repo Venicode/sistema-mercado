@@ -1,3 +1,6 @@
+![Bandeira dos EUA](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/20px-Flag_of_the_United_States.svg.png) Read this file in English: [README-US](https://github.com/Venicode/sistema-mercado/blob/master/readme-US.md)
+
+
 ## Sistema de vendas para mercado
 
 Estou desenvolvendo este sistema para consolidar os meus conhecimentos do que vim aprendendo da linguagem Java. Neste programa pude aplicar os principais conceitos de orientação a objetos, como:
