@@ -81,7 +81,7 @@ public class SellController {
                             addSellToList(newSell, newStockController, newCashRegister);
                             break;
                         } else {
-                            System.out.println("Método de pagamento não inválido.");
+                            System.out.println("Método de pagamento inválido.");
                         }
                     }
                     System.out.println("Deseja realizar mais alguma operação? S/N");
