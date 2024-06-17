@@ -31,8 +31,8 @@ Segue exemplo abaixo:
 ## Regras de negócio
 
 Validações antes de realizar a compra:
-1 - O produto está disponível no estoque
-2 - O fornecedor está cadastrado
-3 - Pagamento for igual ou superior ao da compra
-4 - Superior apenas para opção dinheiro, onde deve calcular o troco
-5 - Validação de login
+- O produto está disponível no estoque
+- O fornecedor está cadastrado
+- Pagamento for igual ou superior ao da compra
+- Superior apenas para opção dinheiro, onde deve calcular o troco
+- Validação de login
