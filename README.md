@@ -27,3 +27,12 @@ Feito isso, abra o seu prompt de comando ou cmd e execute o comando "java -jar s
 
 Segue exemplo abaixo:
 ![image](https://github.com/Venicode/sistema-mercado/assets/44931124/e8c86a63-6a31-434c-b3d4-a3f631cdc7ad)
+
+## Regras de negócio
+
+Validações antes de realizar a compra:
+1 - O produto está disponível no estoque
+2 - O fornecedor está cadastrado
+3 - Pagamento for igual ou superior ao da compra
+4 - Superior apenas para opção dinheiro, onde deve calcular o troco
+5 - Validação de login
